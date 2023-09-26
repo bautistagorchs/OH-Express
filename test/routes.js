@@ -9,7 +9,7 @@ describe("ShoppingList routes", function () {
   });
 
   describe("`/users` URI", function () {
-    xit("GET initially responds with an empty array", function () {
+    it("GET initially responds with an empty array", function () {
       return supertest
         .get("/users")
         .expect(200)
@@ -19,7 +19,7 @@ describe("ShoppingList routes", function () {
         });
     });
 
-    xit("GET responds with all users who have items", function () {
+    it("GET responds with all users who have items", function () {
       ShoppingList.add("santi", "medialunas");
       ShoppingList.add("guille", "chivito");
       return supertest
@@ -33,7 +33,7 @@ describe("ShoppingList routes", function () {
   });
 
   describe("`/users/:name/items` URI", function () {
-    xit("GET returns a list with items for a specific user", function () {
+    it("GET returns a list with items for a specific user", function () {
       ShoppingList.add("alan", "bread");
       return supertest
         .get("/users/alan/items")
@@ -46,7 +46,7 @@ describe("ShoppingList routes", function () {
         });
     });
 
-    xit("POST adds an item to a user's shopping list", function () {
+    it("POST adds an item to a user's shopping list", function () {
       return supertest
         .post("/users/toni/items")
         .send({ item: "milk" })
@@ -58,7 +58,7 @@ describe("ShoppingList routes", function () {
         });
     });
 
-    xit("PUT updates an item from the user's list", function () {
+    it("PUT updates an item from the user's list", function () {
       ShoppingList.add("toni", "milk");
       return supertest
         .put("/users/toni/items/0")
@@ -71,7 +71,7 @@ describe("ShoppingList routes", function () {
         });
     });
 
-    xit("DELETE removes an item from a user's shopping list", function () {
+    it("DELETE removes an item from a user's shopping list", function () {
       ShoppingList.add("toni", "milk");
       return supertest
         .delete("/users/toni/items/0")
@@ -83,7 +83,7 @@ describe("ShoppingList routes", function () {
   });
 
   describe("`/users/:name/items` URI with query parameters", function () {
-    xit("GET retrieves only bought items when filtered", function () {
+    it("GET retrieves only bought items when filtered", function () {
       ShoppingList.add("toni", "milk");
       ShoppingList.bought("toni", 0);
       ShoppingList.add("toni", "bread");

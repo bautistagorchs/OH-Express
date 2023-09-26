@@ -1,18 +1,13 @@
 "use strict";
 
-var express = require("express");
+const express = require("express");
+const callRouter = require("./routes/index");
 
-//Importing the routes here...
+const app = express();
 
-var app = express();
+app.use(express.json());
+app.use("/", callRouter);
 
-//Your code here:
-// Middleware to parse JSON requests:
-//
-// Using the routes here:
-//
-//
-
-module.exports = app; // esto es solo para testear mas facil
+module.exports = app;
 
 if (!module.parent) app.listen(3000);

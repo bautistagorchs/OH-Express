@@ -3,35 +3,34 @@ class ShoppingList {
 
   //Methods to create
   static users() {
-    //Your code here:
+    return Object.keys(this.items);
   }
 
-  // Return the list of items for a given user
-  static list() {
-    //Your code here:
+  static list(n) {
+    if (!this.items[n]) return [];
+    else return this.items[n];
   }
 
-  // Add an item to the list for a given user
-  static add() {
-    //Your code here:
+  static add(n, prod) {
+    let item = { content: prod, bought: false };
+    if (!this.items[n]) this.items[n] = [item];
+    else this.items[n].push(item);
+    return item;
   }
 
-  // Update an item from the list of a given user by index
-  static update() {
-    //Your code here:
+  static update(n, i, newProd) {
+    this.items[n][i].content = newProd;
+    return this.items[n][i];
   }
 
-  // Mark an item as bought for a given user by index
-  static bought() {
-    //Your code here:
+  static bought(n, i) {
+    this.items[n][i].bought = true;
   }
 
-  // Remove an item from the list of a given user by index
-  static remove() {
-    //Your code here:
+  static remove(n, i) {
+    this.items[n].splice(i, 1);
   }
 
-  // Reset the entire shopping list data
   static reset() {
     this.items = {};
   }

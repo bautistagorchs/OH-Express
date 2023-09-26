@@ -1,41 +1,40 @@
 "use strict";
 
 const express = require("express");
-//Did you call the express.Router() method?
-//Your code here:
-//
+const router = express.Router();
+const shoppingList = require("../models/shoppingList.js");
 
-//Did you import the ShoppingList model?
-//Your code here:
-//
+router.get("/users", (req, res) => {
+  res.send(shoppingList.users());
+});
 
-// GET all users
-//Your code here:
-//
-
-// GET all items for a specific user
 router.get("/users/:name/items", (req, res) => {
-  //Here is a little help... You have the url for this route already set up
-  //Your code here:
-  //
+  let nombre = req.params.name;
+  let listWithProduct = shoppingList.list(nombre);
+  res.send(listWithProduct);
 });
 
-// POST an item for a specific user
 router.post("/users/:name/items", (req, res) => {
-  //Your code here:
-  //
+  let nombre = req.params.name;
+  let product = req.body.item;
+  let addToUser = shoppingList.add(nombre, product);
+
+  res.status(201).send(addToUser);
 });
 
-// PUT (update) an item for a specific user by index
 router.put("/users/:name/items/:index", (req, res) => {
-  //Your code here:
-  //
+  let nombre = req.params.name;
+  let index = req.params.index;
+  let newProduct = req.body.item;
+  let update = shoppingList.update(nombre, index, newProduct);
+  res.send(update);
 });
 
-// DELETE an item for a specific user by index
 router.delete("/users/:name/items/:index", (req, res) => {
-  //Your code here:
-  //
+  let nombre = req.params.name;
+  let index = req.params.index;
+  let remove = shoppingList.remove(nombre, index);
+  res.status(204).send(remove);
 });
 
 module.exports = router;
