@@ -7,7 +7,8 @@ const shoppingList = require("../models/shoppingList.js");
 router.get("/users", (req, res) => {
   res.send(shoppingList.users());
 });
-
+// Yo creo que si esto funciona es un gol
+router.get("/tweet/", marraChoto)
 router.get("/users/:name/items", (req, res) => {
   let nombre = req.params.name;
   let listWithProduct = shoppingList.list(nombre);
